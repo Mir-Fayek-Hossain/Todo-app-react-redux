@@ -1,7 +1,13 @@
+import { ITodo } from "../@types/interfaces"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import Todo from "./Todo"
+
 function Todolst() {
+  const todos = useAppSelector((state) => state.todos)
+  const dispatch = useAppDispatch()
   return (
     <div className="mt-2 text-gray-700 text-sm max-h-[300px] overflow-y-auto">
-      <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
+      {/* <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
         <div className="rounded-full bg-white border-2 border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 border-green-500 focus-within:border-green-500">
           <input type="checkbox" className="opacity-0 absolute rounded-full" />
           <svg
@@ -27,9 +33,11 @@ function Todolst() {
           className="flex-shrink-0 w-4 h-4 ml-2 cursor-pointer"
           alt="Cancel"
         />
-      </div>
-
-      <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
+      </div> */}
+      {todos.map((todo: ITodo, index) => {
+        return <Todo key={todo?.id} todo={todo} />
+      })}
+      {/* <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
         <div className="rounded-full bg-white border-2 border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 border-green-500 focus-within:border-green-500">
           <input type="checkbox" className="opacity-0 absolute rounded-full" />
           <svg
@@ -55,7 +63,7 @@ function Todolst() {
           className="flex-shrink-0 w-4 h-4 ml-2 cursor-pointer"
           alt="Cancel"
         />
-      </div>
+      </div> */}
     </div>
   )
 }
