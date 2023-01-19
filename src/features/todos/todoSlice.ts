@@ -13,19 +13,19 @@ import { ITodo, ITodos } from "../../@types/interfaces"
 const initialState: ITodos = [
   {
     id: 1,
-    todo: "learn React",
+    text: "learn React",
     completed: true,
   },
   {
     id: 2,
-    todo: "learn React",
+    text: "learn React",
     completed: false,
     color: "red",
   },
 ]
 function nextTodoID(todos: ITodos) {
   const maxId = todos.reduce((mId, todo) => Math.max(mId, todo?.id), -1)
-  return maxId
+  return maxId + 1
 }
 const todoSlice = createSlice({
   name: "todos",
@@ -36,14 +36,14 @@ const todoSlice = createSlice({
         ...state,
         {
           id: nextTodoID(state),
-          todo: action.payload.todoText,
+          text: action.payload,
           completed: false,
         },
       ]
     },
     toggled(state, action) {
       return state.map((todo: ITodo) => {
-        if (todo?.id !== action.payload.id) {
+        if (todo?.id !== action.payload) {
           return todo
         }
         return {
@@ -64,7 +64,7 @@ const todoSlice = createSlice({
       })
     },
     deleted(state, action) {
-      return state.filter((todo) => todo.id !== action.payload.id)
+      return state.filter((todo) => todo.id !== action.payload)
     },
     allCompleted(state) {
       return state.map((todo) => {

@@ -4,7 +4,7 @@ export interface IFilter {
 }
 export interface ITodo {
   id: number
-  todo: string
+  text: string
   completed: boolean
   color?: string
 }

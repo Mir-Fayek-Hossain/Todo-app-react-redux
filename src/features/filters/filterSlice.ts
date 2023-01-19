@@ -30,7 +30,7 @@ const filterSlice = createSlice({
     changeStatus(state, action) {
       return {
         ...state,
-        status: action.payload.stat,
+        status: action.payload,
       }
     },
   },
